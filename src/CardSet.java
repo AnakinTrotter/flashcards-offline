@@ -27,11 +27,8 @@ public class CardSet {
         StringTokenizer st = new StringTokenizer(text, "\n\r,");
         while(st.hasMoreTokens()) {
             Flashcard fc = new Flashcard(st.nextToken(), st.nextToken());
-            System.out.println(fc);
-            flashcards.add(fc);
+            result.add(fc);
         }
-        System.out.println(st.toString());
-        System.out.println(flashcards);
-        return null;
+        return result;
     }
 }
