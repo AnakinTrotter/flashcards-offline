@@ -8,5 +8,6 @@ etc...
 
 Controls:\
 Left/Right arrow keys to cycle cards\
-Spacebar to flip cards
+Up/Down/Spacebar to flip cards
+s to shuffle cards
 
