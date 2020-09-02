@@ -84,8 +84,8 @@ public class CardSet {
             e.printStackTrace();
             System.exit(1);
         }
-        // splits the string at each new line, carriage return, and comma
-        StringTokenizer st = new StringTokenizer(text, "\n\r,");
+        // splits the string at each new line, carriage return, and closed curly brace
+        StringTokenizer st = new StringTokenizer(text, "\n\r}");
         while(st.hasMoreTokens()) {
             // front of the card
             String t1 = st.nextToken();
