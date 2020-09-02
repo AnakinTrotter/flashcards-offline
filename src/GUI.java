@@ -7,13 +7,27 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * @author Anakin Trotter
+ * @version 1.0
+ * @since 9/1/2020
+ */
+
 public class GUI extends JFrame {
     private CardSet flashcards;
     private FlashcardPanel flashcard;
     private JMenuItem shuffleItem;
 
+    /**
+     * Creates a JFrame then fills it with JPanels and a JMenubar
+     * @param width width of the JFrame
+     * @param height    height of the JFrame
+     * @param title title of the JFrame to be displayed on top of the window
+     * @param flashcards    the CardSet to use and display
+     */
     public GUI(int width, int height, String title, CardSet flashcards) {
         super(title);
+        // makes the GUI look more clean (like the regular Windows file explorer)
         try {
             UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
@@ -23,7 +37,7 @@ public class GUI extends JFrame {
         setSize(width, height);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); // centers the JFrame
 
         flashcard = new FlashcardPanel();
         add(flashcard);
@@ -61,10 +75,18 @@ public class GUI extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * Opens a popup dialog menu to give the user information about something
+     * @param infoMessage   the text that should go in the message box
+     * @param titleBar  the text that should display in the title bar of the message box
+     */
     private void showInfoBox(String infoMessage, String titleBar) {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Listens for clicks to the Help Menu and then displays the correct pop up message
+     */
     private class HelpListener implements ActionListener {
 
         @Override
@@ -86,6 +108,9 @@ public class GUI extends JFrame {
         }
     }
 
+    /**
+     * Listens for clicks to the Open Menu and then prompts the user to select a file to open
+     */
     private class OpenListener implements ActionListener {
 
         @Override
@@ -99,6 +124,9 @@ public class GUI extends JFrame {
         }
     }
 
+    /**
+     * Listens for clicks to the shuffle button to toggle between shuffled and un-shuffled flashcards
+     */
     private class ShuffleListener implements ActionListener {
 
         @Override
@@ -111,6 +139,10 @@ public class GUI extends JFrame {
         }
     }
 
+    /**
+     * The JPanel that contains basically everything.
+     * The class is protected so that the class it is embedded in can access its fields.
+     */
     protected class FlashcardPanel extends JPanel {
         private JTextPane text;
         private int currentCard;
@@ -143,6 +175,11 @@ public class GUI extends JFrame {
             setFocusable(true);
         }
 
+        /**
+         * Displays from the regular list if shuffled, and the persistent list if not shuffled.
+         * Displays either the text on the front of back of the flashcard depending on what side
+         * the user is looking at.
+         */
         public void updateCards() {
             if(onFront) {
                 if(shuffled)
@@ -158,6 +195,10 @@ public class GUI extends JFrame {
             repaint();
         }
 
+        /**
+         * Toggles the shuffle option and saves the user's position in the CardSet
+         * so that they can pick up where they left off if they un-shuffle.
+         */
         public void shuffleCards() {
             if(flashcards.getLength() == 0) return;
             if (shuffled) {
@@ -174,6 +215,10 @@ public class GUI extends JFrame {
             updateCards();
         }
 
+        /**
+         * Draws the flashcard shaped background and the progress counter on the top left
+         * @param g the Graphics object as provided by Java
+         */
         public void paintComponent(Graphics g) {
             super.paintComponent(g);
             g.setFont(font);
@@ -182,6 +227,10 @@ public class GUI extends JFrame {
             g.fillRoundRect(80, 55, 800, 550, 20, 20);
         }
 
+        /**
+         * Sets key bindings using the InputMap and ActionMap rather than KeyListener
+         * so that the user's key inputs don't fail to register because of focus issues.
+         */
         private void configureKeyBinding() {
             ActionMap actionMap = getActionMap();
             int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
@@ -205,6 +254,10 @@ public class GUI extends JFrame {
             actionMap.put(vkS, new KeyAction(vkS));
         }
 
+        /**
+         * Listens for keyboard inputs from the user then executes through a switch
+         * the operation associated with that key binding
+         */
         private class KeyAction extends AbstractAction {
             public KeyAction(String actionCommand) {
                 putValue(ACTION_COMMAND_KEY, actionCommand);
@@ -239,6 +292,10 @@ public class GUI extends JFrame {
         }
     }
 
+    /**
+     * Creates a new GUI and passes it an empty CardSet
+     * @param args  arguments as provided by Java
+     */
     public static void main(String[] args) {
         GUI gui = new GUI(970, 720, "Flashcard Maker", new CardSet());
     }
