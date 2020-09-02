@@ -6,3 +6,5 @@
 .idea/uiDesigner.xml
 /out/
 FlashcardMaker.iml
+.idea/artifacts/FlashcardMaker_jar.xml
+src/META-INF/MANIFEST.MF

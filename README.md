@@ -6,3 +6,7 @@ Front, Back\
 Front, Back\
 etc...
 
+Controls:\
+Left/Right arrow keys to cycle cards\
+Spacebar to flip cards
+
