@@ -98,9 +98,9 @@ public class GUI extends JFrame {
                     break;
                 case "Creating a set":
                     showInfoBox("1) Create a new text document (notepad is fine)\n" +
-                            "2) Type your terms and definitions separated by a comma. For example:\n" +
-                            "\n        hi, used as a friendly greeting or to attract attention.\n" +
-                            "\n        bye, one or more holes remaining unplayed after a match has been decided.\n" +
+                            "2) Type your terms and definitions separated by '|'. For example:\n" +
+                            "\n        hi| used as a friendly greeting or to attract attention.\n" +
+                            "\n        bye| one or more holes remaining unplayed after a match has been decided.\n" +
                             "\n3) Save your text file then open it through the file menu.",
                             "How to create your own flashcards");
                     break;
@@ -163,7 +163,7 @@ public class GUI extends JFrame {
             SimpleAttributeSet as  = new SimpleAttributeSet();
             StyledDocument doc = text.getStyledDocument();
             StyleConstants.setAlignment(as, StyleConstants.ALIGN_CENTER);
-            StyleConstants.setFontSize(as, 52);
+            StyleConstants.setFontSize(as, 20);
             StyleConstants.setBold(as, true);
             doc.setParagraphAttributes(0, doc.getLength(), as, false);
             text.setBackground(Color.lightGray);
