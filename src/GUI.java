@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
@@ -156,23 +157,30 @@ public class GUI extends JFrame {
             shuffled = false;
             currentCard = 1;
             font = new Font("Arial", Font.PLAIN, 32);
-            setBorder(BorderFactory.createEmptyBorder(250,100,100,100));
+            setBorder(BorderFactory.createEmptyBorder(200,100,100,100));
             text = new JTextPane();
             configureKeyBinding();
 
             SimpleAttributeSet as  = new SimpleAttributeSet();
             StyledDocument doc = text.getStyledDocument();
             StyleConstants.setAlignment(as, StyleConstants.ALIGN_CENTER);
-            StyleConstants.setFontSize(as, 20);
+            StyleConstants.setFontSize(as, 32);
             StyleConstants.setBold(as, true);
             doc.setParagraphAttributes(0, doc.getLength(), as, false);
             text.setBackground(Color.lightGray);
 
             text.setEditable(false);
             text.setFocusable(false);
+            text.setPreferredSize(new Dimension(500, 300));
             add(text);
             setVisible(true);
             setFocusable(true);
+
+            try {
+                doc.insertString(doc.getLength(), "⬉ Click 'File' to get started!", as);
+            } catch (BadLocationException e) {
+                e.printStackTrace();
+            }
         }
 
         /**

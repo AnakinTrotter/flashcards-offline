@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -79,7 +80,7 @@ public class CardSet {
         String text = "";
         // attempt to read the file, aborts if an error occurs
         try {
-            text = readFile(Paths.get(path).toString(), Charset.defaultCharset());
+            text = readFile(Paths.get(path).toString(), StandardCharsets.UTF_8);
         } catch(IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -93,9 +94,9 @@ public class CardSet {
         }
         while(st.hasMoreTokens()) {
             // front of the card
-            String t1 = st.nextToken();
+            String t1 = st.nextToken().trim();
             // back of the card
-            String t2 = st.nextToken();
+            String t2 = st.nextToken().trim();
             // creating a new flashcard object with t1 and t2 as the front and back
             // then adding it to the list that will be returned
             result.add(new Flashcard(t1, t2));
