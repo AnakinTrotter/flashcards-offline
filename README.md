@@ -1,4 +1,4 @@
-# FlashcardMaker
+# Flashcards Offline
 To create a flashcard set:\
 Make a text document (notepad is good) with the following format:\
 Front| Back\
