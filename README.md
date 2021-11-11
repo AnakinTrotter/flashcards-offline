@@ -1,3 +1,5 @@
+WARNING: This project was for me to practice Java and is no longer being maintained. Use at your own risk.
+
 # Flashcards Offline
 To create a flashcard set:\
 Make a text document (notepad is good) with the following format:\
